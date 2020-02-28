@@ -5,8 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Main extends Application {
@@ -23,19 +21,31 @@ public class Main extends Application {
     public static void main(String[] args) throws Exception {
 
         ArrayList<Roba> listRobe = new ArrayList<Roba>();
-        listRobe.add(new Roba(1,"Zlato",100));
-        listRobe.add(new Roba(2,"Srebro",40));
-        listRobe.add(new Roba(3,"Nafta",130));
+        listRobe.add(new Roba(1, "Zlato", 100, 10, 300));
+        listRobe.add(new Roba(2,"Srebro",40, 4, 120));
+        listRobe.add(new Roba(3,"Nafta",130, 13, 360));
         Berza berza = new Berza();
 
         Igrac igrac= new Igrac (10000);
      Igra igrica= new Igra(berza,igrac,listRobe);
 
+     /*
      igrac.IspisiStanje();
      igrica.Kupi(listRobe.get(0),10);
      igrac.IspisiStanje();
      igrica.Prodaj(listRobe.get(0),10);
      igrac.IspisiStanje();
+*/
+        for (int i = 0; i < 1000; i++) {
+            berza.novaCijena(listRobe.get(0));
+            berza.novaCijena(listRobe.get(1));
+            berza.novaCijena(listRobe.get(2));
+            if(i % 50 == 0) {
+                System.out.println("Zlato:  " + listRobe.get(0).trenutnaVrijednostJedinice);
+                System.out.println("Srebro: " + listRobe.get(1).trenutnaVrijednostJedinice);
+                System.out.println("Nafta:  " + listRobe.get(2).trenutnaVrijednostJedinice);
+            }
+        }
 
 
     }

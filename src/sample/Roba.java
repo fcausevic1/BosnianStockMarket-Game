@@ -3,12 +3,16 @@ package sample;
 public class Roba {
     int ID;
     String ime;
-    int trenutnaVrijednostJedinice;
+    double trenutnaVrijednostJedinice;
+    double minimalnaVrijednostJedinice;
+    double maximalnaVrijednostJedinice;
 
-    public Roba(int ID, String ime, int trenutnaVrijednostJedinice) {
+    public Roba(int ID, String ime, double trenutnaVrijednostJedinice, double minimalnaVrijednostJedinice, double maximalnaVrijednostJedinice) {
         this.ID = ID;
         this.ime = ime;
         this.trenutnaVrijednostJedinice = trenutnaVrijednostJedinice;
+        this.minimalnaVrijednostJedinice = minimalnaVrijednostJedinice;
+        this.maximalnaVrijednostJedinice = maximalnaVrijednostJedinice;
     }
 
     public Roba(int ID) {
@@ -31,13 +35,28 @@ public class Roba {
         this.ime = ime;
     }
 
-    public int getTrenutnaVrijednostJedinice() {
+    public double getTrenutnaVrijednostJedinice() {
         return trenutnaVrijednostJedinice;
     }
 
-    public void setTrenutnaVrijednostJedinice(int trenutnaVrijednostJedinice) {
+
+    public void setTrenutnaVrijednostJedinice(double trenutnaVrijednostJedinice) {
         this.trenutnaVrijednostJedinice = trenutnaVrijednostJedinice;
     }
 
+    public double getMinimalnaVrijednostJedinice() {
+        return minimalnaVrijednostJedinice;
+    }
 
+    public void setMinimalnaVrijednostJedinice(double minimalnaVrijednostJedinice) {
+        this.minimalnaVrijednostJedinice = minimalnaVrijednostJedinice;
+    }
+
+    public double getMaximalnaVrijednostJedinice() {
+        return maximalnaVrijednostJedinice;
+    }
+
+    public void setMaximalnaVrijednostJedinice(double maximalnaVrijednostJedinice) {
+        this.maximalnaVrijednostJedinice = maximalnaVrijednostJedinice;
+    }
 }

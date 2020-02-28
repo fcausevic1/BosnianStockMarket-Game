@@ -62,7 +62,7 @@ public class Igrac {
     }
     void IspisiStanje () {
         for (Artikal artikal : stanjeRobe) {
-            System.out.printf(artikal.roba.ime + " " + artikal.kolicina);
+            System.out.println(artikal.roba.ime + " " + artikal.kolicina);
         }
         System.out.println("$" + stanjeNovca);
     }

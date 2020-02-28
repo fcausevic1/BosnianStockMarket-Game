@@ -1,5 +1,7 @@
 package sample;
 
+import java.util.Random;
+
 public class Berza {
     int granica = 50;
     public int rand(int granica) {
@@ -18,18 +20,19 @@ public class Berza {
     }
 
     public void novaCijena(Roba roba) {
+        Random r= new Random(System.currentTimeMillis());
         int num = rand((int)roba.trenutnaVrijednostJedinice%100);
         if((roba.trenutnaVrijednostJedinice / (roba.maximalnaVrijednostJedinice-roba.minimalnaVrijednostJedinice))*100 <= 40) {
-            if(num == 0) roba.trenutnaVrijednostJedinice -= (roba.trenutnaVrijednostJedinice/100)*(Math.random()*5);
-            else roba.trenutnaVrijednostJedinice += (roba.trenutnaVrijednostJedinice/100)*(Math.random()*10);
+            if(num == 0) roba.trenutnaVrijednostJedinice -= (roba.trenutnaVrijednostJedinice/100)*(r.nextDouble()*5);
+            else roba.trenutnaVrijednostJedinice += (roba.trenutnaVrijednostJedinice/100)*(r.nextDouble()*10);
         }
         else if((roba.trenutnaVrijednostJedinice/ (roba.maximalnaVrijednostJedinice-roba.minimalnaVrijednostJedinice))*100 >= 60) {
-            if(num == 0) roba.trenutnaVrijednostJedinice -= (roba.trenutnaVrijednostJedinice/100)*(Math.random()*35);
-            else roba.trenutnaVrijednostJedinice += (roba.trenutnaVrijednostJedinice/100)*(Math.random()*5);
+            if(num == 0) roba.trenutnaVrijednostJedinice -= (roba.trenutnaVrijednostJedinice/100)*(r.nextDouble()*35);
+            else roba.trenutnaVrijednostJedinice += (roba.trenutnaVrijednostJedinice/100)*(r.nextDouble()*5);
         }
         else {
-            if(num == 0) roba.trenutnaVrijednostJedinice -= (roba.trenutnaVrijednostJedinice/100)*(Math.random()*5);
-            else roba.trenutnaVrijednostJedinice += (roba.trenutnaVrijednostJedinice/100)*(Math.random()*3);
+            if(num == 0) roba.trenutnaVrijednostJedinice -= (roba.trenutnaVrijednostJedinice/100)*(r.nextDouble()*5);
+            else roba.trenutnaVrijednostJedinice += (roba.trenutnaVrijednostJedinice/100)*(r.nextDouble()*3);
         }
 
         roba.trenutnaVrijednostJedinice*=100;

@@ -23,7 +23,8 @@ public class Main extends Application {
     public static void main(String[] args) throws Exception {
 
         ArrayList<Roba> listRobe = new ArrayList<Roba>();
-        listRobe.add(new Roba(1, "Zlato", 100, 10, 300));
+        Roba zlato= new Roba(1, "Zlato", 100, 10, 300);
+        listRobe.add(zlato);
         listRobe.add(new Roba(2, "Srebro", 40, 4, 120));
         listRobe.add(new Roba(3, "Nafta", 130, 13, 360));
         Berza berza = new Berza();
@@ -51,12 +52,18 @@ public class Main extends Application {
         }
 */
         int unos;
+        Random r= new Random(666);
         Scanner Odabir = new Scanner(System.in);
         do {
-            System.out.println("Dobro došli u novu semdicu!");
             igrica.novaSedmica();
+            System.out.println("Dobro došli u novu semdicu!");
+            int num =((r.nextInt(20)));                 // OVO OVDJE NIJE NASUMICNO. TJ AL SVAKI PUT KAD POKRENES ROGRAM ISTE BROJEVE BACA HAHAHA
+
+
+            if (num==0) igrica.napadNaNovac(igrac);
+            if (num==19) igrica.napadNaRobu(zlato);                     // OVDJE TREBA SAMO STAVITI DA VRATI NASUMICAN BROJ OD 0 DO 2 I KAO PARAMETAR POSLATI LISTU ROBE KOJU IMA KORISN
             igrica.stanjeBerze();
-            igrac.IspisiStanjeIgraca();
+            igrac.IspisiStanjeIgraca();                                             // JESAM GA SKONTO ISKRENO HAHAHAH
 
             System.out.println("1-Kupi 2-Prodaj 3-Sljedeca sedmica");
             unos=Odabir.nextInt();

@@ -5,7 +5,7 @@ import java.util.Random;
 public class Berza {
 
 
-
+/*
     public int rand(int granica) {
         int num = (int) (Math.random()*100);
         if(num > granica) {
@@ -42,5 +42,5 @@ public class Berza {
         roba.trenutnaVrijednostJedinice /= 100;
     }
 
-
+*/
 }

@@ -34,7 +34,7 @@ public class Igrac {
 
    };
 
-   ArrayList<Artikal> stanjeRobe;
+   ArrayList<Artikal> stanjeRobe;               // ATRIBUTI KLASE IGRAC
    double stanjeNovca;
 
     public Igrac(double stanjeNovca) {
@@ -42,8 +42,7 @@ public class Igrac {
         this.stanjeNovca = stanjeNovca;
     }
 
-    public Igrac() {
-    }
+    public Igrac() { }
 
     public ArrayList<Artikal> getStanjeRobe() {
         return stanjeRobe;
@@ -60,6 +59,8 @@ public class Igrac {
     public void setStanjeNovca(double stanjeNovca) {
         this.stanjeNovca = stanjeNovca;
     }
+
+
     void IspisiStanjeIgraca () {
         for (Artikal artikal : stanjeRobe) {
             System.out.println(artikal.roba.ime + " " + artikal.kolicina);
@@ -98,5 +99,8 @@ boolean daLiJeDodao=false;
             stanjeRobe.remove(a);
         }
     }
+
+
+
 }
 

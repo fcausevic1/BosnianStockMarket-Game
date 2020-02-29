@@ -60,11 +60,11 @@ public class Igrac {
     public void setStanjeNovca(double stanjeNovca) {
         this.stanjeNovca = stanjeNovca;
     }
-    void IspisiStanje () {
+    void IspisiStanjeIgraca () {
         for (Artikal artikal : stanjeRobe) {
             System.out.println(artikal.roba.ime + " " + artikal.kolicina);
         }
-        System.out.println("$" + stanjeNovca);
+        System.out.println("Imate $" + stanjeNovca);
     }
 
 

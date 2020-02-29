@@ -51,21 +51,50 @@ public class Main extends Application {
         }
 */
         int unos;
-        Scanner stahos = new Scanner(System.in);
+        Scanner Odabir = new Scanner(System.in);
         do {
-            System.out.println("STAHOS");
-            System.out.println(listRobe.get(0).trenutnaVrijednostJedinice);
-            if (stahos.nextInt()==1) {
-                System.out.println("KOLKO");
-                igrac.Kupi(listRobe.get(0), stahos.nextInt());
+            System.out.println("Dobro došli u novu semdicu!");
+            igrica.novaSedmica();
+            igrica.stanjeBerze();
+            igrac.IspisiStanjeIgraca();
+
+            System.out.println("1-Kupi 2-Prodaj 3-Sljedeca sedmica");
+            unos=Odabir.nextInt();
+            //System.out.println(listRobe.get().trenutnaVrijednostJedinice);
+            if (unos==1) {
+                System.out.println("1-Zlato 2-Srebro 3-Nafta 4-Zajebo sam se");
+                unos=Odabir.nextInt();
+                if (unos == 1) {
+                    System.out.println("Koliko?");
+                    igrac.Kupi(listRobe.get(0), Odabir.nextInt());
+                }
+                else if(unos == 2) {
+                    System.out.println("Koliko?");
+                    igrac.Kupi(listRobe.get(1), Odabir.nextInt());
+                }
+                else if(unos == 3) {
+                    System.out.println("Koliko?");
+                    igrac.Kupi(listRobe.get(2), Odabir.nextInt());
+                }
             }
-            else {
-                System.out.println("KOLKO");
-                igrac.Prodaj(listRobe.get(0), stahos.nextInt());
+            else if  (unos == 2) {
+                System.out.println("1-Zlato 2-Srebro 3-Nafta 4-Zajebo sam se");
+                unos=Odabir.nextInt();
+                if (unos == 1) {
+                    System.out.println("Koliko?");
+                    igrac.Prodaj(listRobe.get(0), Odabir.nextInt());
+                } else if (unos == 2) {
+                    System.out.println("Koliko?");
+                    igrac.Prodaj(listRobe.get(1), Odabir.nextInt());
+                } else if (unos == 3) {
+                    System.out.println("Koliko?");
+                    igrac.Prodaj(listRobe.get(2), Odabir.nextInt());
+                }
             }
-            igrac.IspisiStanje();
-            berza.novaCijena(listRobe.get(0));
-        } while (stahos.nextInt() != -1);
+
+
+
+        } while (unos != -1);
 
 System.exit(0);
     }

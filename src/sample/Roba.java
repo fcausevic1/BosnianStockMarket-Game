@@ -4,6 +4,7 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Roba {
@@ -13,14 +14,16 @@ public class Roba {
     SimpleDoubleProperty trenutnaVrijednostJedinice;
     SimpleDoubleProperty minimalnaVrijednostJedinice;
     SimpleDoubleProperty maximalnaVrijednostJedinice;
+    ArrayList<Double> historija;
 
-    public Roba(int ID, String ime,int količina, double trenutnaVrijednostJedinice, double minimalnaVrijednostJedinice, double maximalnaVrijednostJedinice) {
+    public Roba(int ID, String ime,int kolicina, double trenutnaVrijednostJedinice, double minimalnaVrijednostJedinice, double maximalnaVrijednostJedinice) {
         this.ID = ID;
         this.ime = new SimpleStringProperty(ime);
-        this.kolicina = new SimpleIntegerProperty(količina);
+        this.kolicina = new SimpleIntegerProperty(kolicina);
         this.trenutnaVrijednostJedinice = new SimpleDoubleProperty(trenutnaVrijednostJedinice);
         this.minimalnaVrijednostJedinice = new SimpleDoubleProperty(minimalnaVrijednostJedinice);
         this.maximalnaVrijednostJedinice = new SimpleDoubleProperty(maximalnaVrijednostJedinice);
+        this.historija = new ArrayList<>();
     }
 
     public Roba() {
@@ -94,20 +97,21 @@ public class Roba {
         this.maximalnaVrijednostJedinice.set(maximalnaVrijednostJedinice);
     }
 
+    public ArrayList<Double> getHistorija() {
+        return historija;
+    }
+
+    public void setHistorija(ArrayList<Double> historija) {
+        this.historija = historija;
+    }
+
     public int rand(int granica) {
         int num = (int) (Math.random()*100);
-        if(num > granica) {
-            //    if(granica > 25) granica -= 2;                    // OVO JE SVE BESKORISNO ZATO STO SVAKI PUT KAO PARAMETAR PRIMI NOVU GRANICU
-            //  if(granica < 20) granica = 100 - granica;
-            num = 1;
-        }
-        else {
-            //  if(granica < 75) granica += 5;                       // ISTO
-            // if(granica > 80) granica = 100 - granica;
-            num = 0;
-        }
-        return num;
+        return num > granica ? 1 : 0;
     }
+
+
+
 /*
     public void novaCijena() {
         Random r= new Random(System.currentTimeMillis());

@@ -1,68 +1,43 @@
 package sample;
 
+import javafx.beans.property.SimpleDoubleProperty;
+
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Igrac {
 
+    ArrayList<Roba> listaRobe;
+   SimpleDoubleProperty stanjeNovca;
 
-   private class Artikal {
-       Roba roba;
-       int kolicina;
-
-       public Artikal(Roba roba, int kolicina) {
-           this.roba = roba;
-           this.kolicina = kolicina;
-       }
-
-       public int getKolicina() {
-           return kolicina;
-       }
-
-       public void setKolicina(int kolicina) {
-           this.kolicina = kolicina;
-       }
-
-       public Roba getRoba() {
-           return roba;
-       }
-
-       public void setRoba(Roba roba) {
-           this.roba = roba;
-       }
-
-       public Artikal() {
-       }
-
-   };
-
-   ArrayList<Artikal> stanjeRobe;               // ATRIBUTI KLASE IGRAC
-   double stanjeNovca;
-
-    public Igrac(double stanjeNovca) {
-        this.stanjeRobe = new ArrayList<Artikal>();
-        this.stanjeNovca = stanjeNovca;
+    public Igrac(ArrayList<Roba> listaRobe, double stanjeNovca) {
+        this.listaRobe = listaRobe;
+        this.stanjeNovca = new SimpleDoubleProperty(stanjeNovca);
     }
 
-    public Igrac() { }
-
-    public ArrayList<Artikal> getStanjeRobe() {
-        return stanjeRobe;
+    public Igrac() {
     }
 
-    public void setStanjeRobe(ArrayList<Artikal> stanjeRobe) {
-        this.stanjeRobe = stanjeRobe;
+    public ArrayList<Roba> getListaRobe() {
+        return listaRobe;
+    }
+
+    public void setListaRobe(ArrayList<Roba> listaRobe) {
+        this.listaRobe = listaRobe;
     }
 
     public double getStanjeNovca() {
+        return stanjeNovca.get();
+    }
+
+    public SimpleDoubleProperty stanjeNovcaProperty() {
         return stanjeNovca;
     }
 
     public void setStanjeNovca(double stanjeNovca) {
-        this.stanjeNovca = stanjeNovca;
+        this.stanjeNovca.set(stanjeNovca);
     }
-
-
+/*
     void IspisiStanjeIgraca () {
         for (Artikal artikal : stanjeRobe) {
             System.out.println(artikal.roba.ime + " " + artikal.kolicina);
@@ -108,7 +83,7 @@ boolean daLiJeDodao=false;
         stanjeNovca= stanjeNovca-( stanjeNovca/33.0);
     }
 
-
+*/
 
 }
 

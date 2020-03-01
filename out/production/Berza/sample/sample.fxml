@@ -31,7 +31,7 @@
           <padding>
               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
           </padding>
-          <ListView prefHeight="200.0" prefWidth="200.0" GridPane.rowSpan="2147483647" />
+          <ListView fx:id="listaRobe" prefHeight="200.0" prefWidth="200.0" GridPane.rowSpan="2147483647" />
           <LineChart fx:id="berzaGraf" horizontalGridLinesVisible="false" horizontalZeroLineVisible="false" legendSide="LEFT" legendVisible="false" verticalGridLinesVisible="false" verticalZeroLineVisible="false" GridPane.columnIndex="1" GridPane.rowIndex="1">
             <yAxis>
                 <NumberAxis fx:id="yOsa" label="Cijena" side="LEFT" tickUnit="100.0" upperBound="1000.0" />
@@ -82,54 +82,56 @@
           </GridPane>
       </GridPane>
   </Tab>
-  <Tab text="Stanje">
-      <content>
-         <GridPane>
-           <columnConstraints>
-             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <Tab text="Stanje">
+        <GridPane>
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
 
-           </columnConstraints>
-           <rowConstraints>
+            </columnConstraints>
+            <rowConstraints>
 
-             <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-           </rowConstraints>
-            <children>
-               <TableView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
-                 <columns>
-                   <TableColumn editable="false" minWidth="-1.0" prefWidth="236.0" text="Naziv robe" />
-                   <TableColumn editable="false" minWidth="-1.0" prefWidth="236.0" text="Količina" />
-                     <TableColumn editable="false" minWidth="-1.0" prefWidth="236.0" text="Vrijednost po jedinici" />
-                     <TableColumn editable="false" minWidth="-1.0" prefWidth="236.0" text="Rast/Pad" />
-                     <TableColumn editable="false" minWidth="-1.0" prefWidth="236.0" text="Ukupna vrijednost" />
-                 </columns>
-                  <GridPane.margin>
-                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                  </GridPane.margin>
-               </TableView>
-               <GridPane>
-                 <columnConstraints>
-                     <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                     <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                   <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                 </columnConstraints>
-                 <rowConstraints>
-                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                 </rowConstraints>
-                  <children>
-                     <Label alignment="CENTER_RIGHT" text="Novac: " />
-                     <Label fx:id="novacLabela" layoutX="10.0" layoutY="38.0" text="00.00KM" GridPane.columnIndex="1" />
-                     <Label layoutX="610.0" layoutY="38.0" text="Neto: " GridPane.columnIndex="2" />
-                     <Label fx:id="netoLabela" layoutX="10.0" layoutY="38.0" text="00.00KM" GridPane.columnIndex="3" />
-                  </children>
-                  <padding>
-                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                  </padding>
-               </GridPane>
-            </children>
-         </GridPane>
-      </content></Tab>
+                <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            </rowConstraints>
+            <TableView fx:id="stanjeTabela" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                <columns>
+                    <TableColumn fx:id="nazivRobeKolona" editable="false" minWidth="-1.0" prefWidth="236.0"
+                                 text="Naziv robe"/>
+                    <TableColumn fx:id="kolicinaKolona" editable="false" minWidth="-1.0" prefWidth="236.0"
+                                 text="Količina"/>
+                    <TableColumn fx:id="trentnaVrijednostKolona" editable="false" minWidth="-1.0" prefWidth="236.0"
+                                 text="Vrijednost po jedinici"/>
+                    <TableColumn fx:id="rastKolona" editable="false" minWidth="-1.0" prefWidth="236.0"
+                                 text="Rast/Pad"/>
+                    <TableColumn fx:id="ukupnaVrijednostKolona" editable="false" minWidth="-1.0" prefWidth="236.0"
+                                 text="Ukupna vrijednost"/>
+                </columns>
+                <GridPane.margin>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                </GridPane.margin>
+            </TableView>
+            <GridPane>
+                <columnConstraints>
+                    <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                    <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+                </rowConstraints>
+                <padding>
+                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                </padding>
+                <Label alignment="CENTER_RIGHT" text="Novac: "/>
+                <Label fx:id="novacLabela" layoutX="10.0" layoutY="38.0" text="00.00KM"
+                       GridPane.columnIndex="1"/>
+                <Label layoutX="610.0" layoutY="38.0" text="Neto: " GridPane.columnIndex="2"/>
+                <Label fx:id="netoLabela" layoutX="10.0" layoutY="38.0" text="00.00KM"
+                       GridPane.columnIndex="3"/>
+            </GridPane>
+        </GridPane>
+    </Tab>
    <Tab text="HIstorija">
       <content>
          <GridPane>

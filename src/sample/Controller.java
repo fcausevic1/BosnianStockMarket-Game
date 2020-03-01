@@ -63,9 +63,9 @@ public class Controller implements Initializable {
         roba.add(new Roba (0,"Zlato",25,100,10,400));
         roba.add(new Roba (1,"Srebro",35,60,6,240));
         roba.add(new Roba (2,"Nafta",55,130,13,420));
-        roba.get(0).getHistorija().add(roba.get(0).getTrenutnaVrijednostJedinice());
-        roba.get(1).getHistorija().add(roba.get(1).getTrenutnaVrijednostJedinice());
-        roba.get(2).getHistorija().add(roba.get(2).getTrenutnaVrijednostJedinice());
+        roba.add(new Roba (3,"Zeljezo",150,30,3,120));
+        roba.add(new Roba (4,"Dijamanti",10,300,30,1200));
+        roba.add(new Roba (4,"Politicki glasovi",450,10,5,25));
 
         //Ubacivanje u Listu
         ObservableList<Roba> listaZaPromatranje = FXCollections.observableArrayList(roba);

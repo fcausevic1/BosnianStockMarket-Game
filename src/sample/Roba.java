@@ -7,7 +7,6 @@ import javafx.beans.property.SimpleStringProperty;
 import java.util.ArrayList;
 import java.util.Random;
 
-@SuppressWarnings("SpellCheckingInspection")
 public class Roba {
     int ID;
     SimpleStringProperty ime;
@@ -25,6 +24,7 @@ public class Roba {
         this.minimalnaVrijednostJedinice = new SimpleDoubleProperty(minimalnaVrijednostJedinice);
         this.maximalnaVrijednostJedinice = new SimpleDoubleProperty(maximalnaVrijednostJedinice);
         this.historija = new ArrayList<>();
+        historija.add(trenutnaVrijednostJedinice);
     }
 
     public Roba() {

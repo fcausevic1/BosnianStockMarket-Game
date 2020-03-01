@@ -59,4 +59,6 @@ public class Roba {
     public void setMaximalnaVrijednostJedinice(double maximalnaVrijednostJedinice) {
         this.maximalnaVrijednostJedinice = maximalnaVrijednostJedinice;
     }
+
+
 }

@@ -14,8 +14,8 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setTitle("The Sarajevo Stock Exchange");
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
 
@@ -52,16 +52,17 @@ public class Main extends Application {
         }
 */
         int unos;
-        Random r= new Random(666);
+        Random r= new Random(System.currentTimeMillis());
         Scanner Odabir = new Scanner(System.in);
+        launch(args);
         do {
             igrica.novaSedmica();
             System.out.println("Dobro došli u novu semdicu!");
-            int num =((r.nextInt(20)));                 // OVO OVDJE NIJE NASUMICNO. TJ AL SVAKI PUT KAD POKRENES ROGRAM ISTE BROJEVE BACA HAHAHA
+            int num =((r.nextInt(21)));                 // OVO OVDJE NIJE NASUMICNO. TJ AL SVAKI PUT KAD POKRENES ROGRAM ISTE BROJEVE BACA HAHAHA
 
 
-            if (num==0) igrica.napadNaNovac(igrac);
-            if (num==19) igrica.napadNaRobu(zlato);                     // OVDJE TREBA SAMO STAVITI DA VRATI NASUMICAN BROJ OD 0 DO 2 I KAO PARAMETAR POSLATI LISTU ROBE KOJU IMA KORISN
+          //  if (num==0) igrica.igrac.napadNaNovac;
+            //if (num==19) igrica.napadNaRobu(listRobe.get(r.nextInt(3)));                     // OVDJE TREBA SAMO STAVITI DA VRATI NASUMICAN BROJ OD 0 DO 2 I KAO PARAMETAR POSLATI LISTU ROBE KOJU IMA KORISN
             igrica.stanjeBerze();
             igrac.IspisiStanjeIgraca();                                             // JESAM GA SKONTO ISKRENO HAHAHAH
 
@@ -102,6 +103,7 @@ public class Main extends Application {
 
 
         } while (unos != -1);
+
 
 System.exit(0);
     }

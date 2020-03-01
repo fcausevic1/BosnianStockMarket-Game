@@ -102,6 +102,12 @@ boolean daLiJeDodao=false;
         }
     }
 
+    void napadNaNovac () {
+
+        System.out.println("Konvertibilna marka je devalvirala! Izgubili ste 33% vašeg novca!");
+        stanjeNovca= stanjeNovca-( stanjeNovca/33.0);
+    }
+
 
 
 }

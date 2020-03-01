@@ -44,9 +44,9 @@ public class Controller implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         ArrayList<Roba>  roba = new ArrayList<>();
-        roba.add(new Roba (0,"Zlato",11,100,10,400));
-        roba.add(new Roba (1,"Srebro",0,60,6,240));
-        roba.add(new Roba (2,"Nafta",0,130,13,420));
+        roba.add(new Roba (0,"Zlato",25,100,10,400));
+        roba.add(new Roba (1,"Srebro",35,60,6,240));
+        roba.add(new Roba (2,"Nafta",55,130,13,420));
         ObservableList<Roba> listaZaPromatranje = FXCollections.observableArrayList(roba);
         listaRobe.setItems(listaZaPromatranje);
         listaRobe.getSelectionModel().selectedItemProperty().addListener((vrijednost,staraVrijednost,novaVrijednost) -> {

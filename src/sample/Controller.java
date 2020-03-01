@@ -39,7 +39,7 @@ public class Controller implements Initializable {
     private ArrayList<Roba> roba;
     private int brojSedmice;
     private DecimalFormat df;
-
+    public ObservableList<Roba> nova;
 
     public void novaSedmica() {
         for (Roba r: roba) {
@@ -52,6 +52,7 @@ public class Controller implements Initializable {
         Roba t = listaRobe.getSelectionModel().getSelectedItem();
         listaRobe.getSelectionModel().clearSelection();
         listaRobe.getSelectionModel().select(t);
+        stanjeTabela.refresh();
     }
 
     @Override
@@ -95,12 +96,16 @@ public class Controller implements Initializable {
         listaRobe.getSelectionModel().selectFirst();
 
         // Ubacivanje u tabelu
-        ObservableList<Roba> nova = FXCollections.observableArrayList(roba);
+        nova = FXCollections.observableArrayList(roba);
         stanjeTabela.setItems(nova);
         nazivRobeKolona.setCellValueFactory(new PropertyValueFactory<>("ime"));
         kolicinaKolona.setCellValueFactory(new PropertyValueFactory<>("kolicina"));
         trentnaVrijednostKolona.setCellValueFactory(new PropertyValueFactory<>("trenutnaVrijednostJedinice"));
-        rastKolona.setCellValueFactory(data -> new SimpleStringProperty("0"));
+        rastKolona.setCellValueFactory(data -> {
+            Roba r = data.getValue();
+            double t = r.getTrenutnaVrijednostJedinice();
+            double s = r.getHistorija().get(r.getHistorija().size()-1);
+            return new SimpleStringProperty((Math.round((t-s)/s*100)*100)/100.0 + "");});
         ukupnaVrijednostKolona.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getTrenutnaVrijednostJedinice() * data.getValue().getKolicina() + ""));
     }
 }

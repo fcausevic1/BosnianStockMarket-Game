@@ -7,6 +7,7 @@ import javafx.beans.property.SimpleStringProperty;
 import java.util.ArrayList;
 import java.util.Random;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class Roba {
     int ID;
     SimpleStringProperty ime;

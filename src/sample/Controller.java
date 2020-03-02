@@ -122,7 +122,7 @@ public class Controller implements Initializable {
             double s = r.getHistorija().get(r.getHistorija().size() - 1);
             return new SimpleStringProperty((Math.round((t - s) / s * 100) * 100) / 100.0 + "%");
         });
-        ukupnaVrijednostKolona.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getTrenutnaVrijednostJedinice() * data.getValue().getKolicina() + ""));
+        ukupnaVrijednostKolona.setCellValueFactory(data -> new SimpleStringProperty((df.format(data.getValue().getTrenutnaVrijednostJedinice()* data.getValue().getKolicina()) + "")));
 
         //Binding igraca
        novacLabela.setText(igrac.getStanjeNovca() + "KM");

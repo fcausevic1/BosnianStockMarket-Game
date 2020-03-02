@@ -16,7 +16,7 @@ public class Roba {
     SimpleDoubleProperty maximalnaVrijednostJedinice;
     ArrayList<Double> historija;
 
-    public Roba(int ID, String ime,int kolicina, double trenutnaVrijednostJedinice, double minimalnaVrijednostJedinice, double maximalnaVrijednostJedinice) {
+    public Roba(int ID, String ime, int kolicina, double trenutnaVrijednostJedinice, double minimalnaVrijednostJedinice, double maximalnaVrijednostJedinice) {
         this.ID = ID;
         this.ime = new SimpleStringProperty(ime);
         this.kolicina = new SimpleIntegerProperty(kolicina);
@@ -24,6 +24,7 @@ public class Roba {
         this.minimalnaVrijednostJedinice = new SimpleDoubleProperty(minimalnaVrijednostJedinice);
         this.maximalnaVrijednostJedinice = new SimpleDoubleProperty(maximalnaVrijednostJedinice);
         this.historija = new ArrayList<>();
+        historija.add(trenutnaVrijednostJedinice);
     }
 
     public Roba() {
@@ -106,7 +107,7 @@ public class Roba {
     }
 
     public int rand(int granica) {
-        int num = (int) (Math.random()*100);
+        int num = (int) (Math.random() * 100);
         return num > granica ? 1 : 0;
     }
 

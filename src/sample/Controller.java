@@ -77,7 +77,8 @@ public class Controller implements Initializable {
         roba.add(new Roba(2, "Nafta", 55, 130, 13, 420));
         roba.add(new Roba(3, "Zeljezo", 150, 30, 3, 120));
         roba.add(new Roba(4, "Dijamanti", 10, 300, 30, 1200));
-        roba.add(new Roba(4, "Politicki glasovi", 450, 10, 5, 25));
+        roba.add(new Roba(5, "Politicki glasovi", 450, 10, 5, 25));
+        roba.add(new Roba(6, "Crnkinje", 1, 200, 20, 800));
 
         //Ubacivanje u Listu
         ObservableList<Roba> listaZaPromatranje = FXCollections.observableArrayList(roba);
@@ -117,7 +118,7 @@ public class Controller implements Initializable {
             Roba r = data.getValue();
             double t = r.getTrenutnaVrijednostJedinice();
             double s = r.getHistorija().get(r.getHistorija().size() - 1);
-            return new SimpleStringProperty((Math.round((t - s) / s * 100) * 100) / 100.0 + "");
+            return new SimpleStringProperty((Math.round((t - s) / s * 100) * 100) / 100.0 + "%");
         });
         ukupnaVrijednostKolona.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getTrenutnaVrijednostJedinice() * data.getValue().getKolicina() + ""));
 

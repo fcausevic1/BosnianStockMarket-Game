@@ -6,15 +6,16 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Igrac {
-    ArrayList<Roba> listaRobe;
-    SimpleDoubleProperty stanjeNovca;
+    private ArrayList<Roba> listaRobe;
+    private SimpleDoubleProperty stanjeNovca;
 
-    public Igrac(ArrayList<Roba> listaRobe, double stanjeNovca) {
-        this.listaRobe = listaRobe;
+    public Igrac(double stanjeNovca) {
         this.stanjeNovca = new SimpleDoubleProperty(stanjeNovca);
+        this.listaRobe = new ArrayList<>();
     }
 
     public Igrac() {
+        this.listaRobe = new ArrayList<>();
     }
 
     public ArrayList<Roba> getListaRobe() {
@@ -35,6 +36,14 @@ public class Igrac {
 
     public void setStanjeNovca(double stanjeNovca) {
         this.stanjeNovca.set(stanjeNovca);
+    }
+
+    public double getUkupnaVrijednost() {
+        double v = 0;
+        for (Roba r: listaRobe) {
+            v += r.getKolicina() * r.getTrenutnaVrijednostJedinice();
+        }
+        return  v;
     }
 /*
     void IspisiStanjeIgraca () {

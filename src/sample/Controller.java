@@ -1,6 +1,9 @@
 package sample;
 
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;
@@ -39,7 +42,7 @@ public class Controller implements Initializable {
     private ArrayList<Roba> roba;
     private int brojSedmice;
     private DecimalFormat df;
-    public ObservableList<Roba> nova;
+    private Igrac igrac;
 
     public void novaSedmica() {
         for (Roba r : roba) {
@@ -53,6 +56,8 @@ public class Controller implements Initializable {
         listaRobe.getSelectionModel().clearSelection();
         listaRobe.getSelectionModel().select(t);
         stanjeTabela.refresh();
+        novacLabela.setText(df.format(igrac.getStanjeNovca()) + "KM");
+        netoLabela.setText(df.format(igrac.getUkupnaVrijednost()) + "KM");
     }
 
     @Override
@@ -60,6 +65,7 @@ public class Controller implements Initializable {
         brojSedmice = 1;
         df = new DecimalFormat("#.00"); // Za labele
         roba = new ArrayList<>();
+        igrac = new Igrac(10000);
         roba.add(new Roba(0, "Zlato", 25, 100, 10, 400));
         roba.add(new Roba(1, "Srebro", 35, 60, 6, 240));
         roba.add(new Roba(2, "Nafta", 55, 130, 13, 420));
@@ -96,8 +102,8 @@ public class Controller implements Initializable {
         listaRobe.getSelectionModel().selectFirst();
 
         // Ubacivanje u tabelu
-        nova = FXCollections.observableArrayList(roba);
-        stanjeTabela.setItems(nova);
+        igrac.setListaRobe(roba);
+        stanjeTabela.setItems(FXCollections.observableArrayList(igrac.getListaRobe()));
         nazivRobeKolona.setCellValueFactory(new PropertyValueFactory<>("ime"));
         kolicinaKolona.setCellValueFactory(new PropertyValueFactory<>("kolicina"));
         trentnaVrijednostKolona.setCellValueFactory(new PropertyValueFactory<>("trenutnaVrijednostJedinice"));
@@ -108,5 +114,9 @@ public class Controller implements Initializable {
             return new SimpleStringProperty((Math.round((t - s) / s * 100) * 100) / 100.0 + "");
         });
         ukupnaVrijednostKolona.setCellValueFactory(data -> new SimpleStringProperty(data.getValue().getTrenutnaVrijednostJedinice() * data.getValue().getKolicina() + ""));
+
+        //Binding igraca
+       novacLabela.setText(igrac.getStanjeNovca() + "KM");
+       netoLabela.setText(igrac.getUkupnaVrijednost() + "KM");
     }
 }

@@ -19,9 +19,9 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Spinner fx:id="spinnerKupi" editable="true" GridPane.columnSpan="2147483647" GridPane.rowIndex="1">
+      <Spinner fx:id="spinnerKupi" editable="true" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="1">
          <GridPane.margin>
-            <Insets left="66.0" />
+            <Insets />
          </GridPane.margin></Spinner>
       <ButtonBar buttonOrder="U+FBIX_NCYOA_R" prefHeight="40.0" prefWidth="200.0" GridPane.rowIndex="2">
         <buttons>
@@ -29,9 +29,9 @@
             <Button fx:id="kupiBtn" mnemonicParsing="false" text="Kupi" />
         </buttons>
       </ButtonBar>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="112.0" text="Koliko želite kupiti ? " textAlignment="CENTER" GridPane.columnSpan="2147483647">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="112.0" text="Koliko želite kupiti ? " textAlignment="CENTER" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER">
          <GridPane.margin>
-            <Insets left="85.0" />
+            <Insets />
          </GridPane.margin></Label>
    </children>
    <padding>

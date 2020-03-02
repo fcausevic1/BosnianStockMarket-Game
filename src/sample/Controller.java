@@ -6,7 +6,11 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
@@ -15,7 +19,9 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -119,4 +125,19 @@ public class Controller implements Initializable {
        novacLabela.setText(igrac.getStanjeNovca() + "KM");
        netoLabela.setText(igrac.getUkupnaVrijednost() + "KM");
     }
+
+    public void Prodaj(ActionEvent actionEvent) {
+    }
+
+    public void Kupi(ActionEvent actionEvent) throws IOException {
+
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("Kupi.fxml"));
+        stage.setTitle("SASE");
+        stage.setScene(new Scene(root));
+        stage.show();
+
+    }
+
+
 }

@@ -1,6 +1,7 @@
 package sample;
 
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -8,12 +9,47 @@ import java.util.ArrayList;
 public class Igrac {
     private ArrayList<Roba> listaRobe;
     private SimpleDoubleProperty stanjeNovca;
+    private ArrayList<Boolean> nivo;               // 0-19999 1, 20k-39999 2, 40k-59999 3, 60k-99999 4, nesto na ovaj fazon
+
+
+    public int kojiJeNivo() {                                   // Vraca nivo na kojem je igrac trenutno.
+    int level=0;
+        for (int i=0 ; i<nivo.size(); i++) {
+            if (nivo.get(i))
+            level++;
+        }
+        return level;
+    }
+
+    public int daLiJePresaoNivo () {                                            // Vrati nivo ako si presao na njega.
+        double ukupnaVrijednost = getUkupnaVrijednost();
+        int level=0;
+
+        for (int i=0 ; i<nivo.size(); i++) {
+            if (ukupnaVrijednost>=60000 && nivo.get(3)) {
+                nivo.set(3,true);
+                return 4;
+            }
+            else if (ukupnaVrijednost>=40000 && nivo.get(2)) {
+                nivo.set(2,true);
+                return 3;
+            }
+            else if (ukupnaVrijednost>=20000 && nivo.get(1)) {
+                nivo.set(1,true);
+                return 2;
+            }
+        }
+        return level;
+    }
+
 
     public Igrac(double stanjeNovca) {
         this.stanjeNovca = new SimpleDoubleProperty(stanjeNovca);
         this.listaRobe = new ArrayList<>();
-    }
+        this.nivo = new ArrayList<>();
+      //  nivo.set(0,true);                               // Ovo ovdje ne radI! ne znam kako da postavim prvi na true?
 
+    }
     public Igrac() {
         this.listaRobe = new ArrayList<>();
     }

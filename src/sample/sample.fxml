@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
@@ -127,11 +130,41 @@
     <Tab text="Historija">
         <GridPane>
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="25.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="25.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="25.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="25.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="25.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="25.0" prefWidth="100.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
+         <children>
+            <BarChart fx:id="BarChart" GridPane.columnIndex="3" GridPane.columnSpan="2147483647" GridPane.rowIndex="2">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </BarChart>
+            <PieChart fx:id="pieChart" GridPane.columnSpan="3" GridPane.rowIndex="2" />
+            <Label text="Sedmica: " GridPane.halignment="RIGHT" />
+            <Label text="Nivo: " GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+            <Label text="Najbolja neto vrijednost: " GridPane.columnIndex="4" GridPane.halignment="RIGHT" />
+            <Label text="Najmanja neto vrijednost: " GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+            <Label fx:id="Sedmica" text="1" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
+            <Label fx:id="Nivo" text="1" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
+            <Label fx:id="maxNetoVrijednost" text="10000" GridPane.columnIndex="5" GridPane.halignment="LEFT" />
+            <Label fx:id="minNetoVrijednost" text="10000" GridPane.columnIndex="5" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
+            <Label text="Najdraža roba: " GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
+            <Label fx:id="najdrazaRoba" text="Nafta" GridPane.columnIndex="3" GridPane.halignment="LEFT" />
+            <Label text="Najveći profit po jedinici: " GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+            <Label fx:id="najvećiProfit" text="0.0000%" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
+         </children>
         </GridPane>
     </Tab>
 </TabPane>

@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.LineChart;
@@ -19,6 +20,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -128,16 +130,33 @@ public class Controller implements Initializable {
     }
 
     public void Prodaj(ActionEvent actionEvent) {
+        Stage stage = new Stage();
+        Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getResource("prodaj.fxml"));
+            stage.setTitle("SASE");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow());
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void Kupi(ActionEvent actionEvent) throws IOException {
-
+    public void Kupi(ActionEvent actionEvent){
         Stage stage = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("Kupi.fxml"));
-        stage.setTitle("SASE");
-        stage.setScene(new Scene(root));
-        stage.show();
-
+        Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getResource("kupi.fxml"));
+            stage.setTitle("SASE");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.WINDOW_MODAL);
+            stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow());
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 

@@ -6,9 +6,8 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Igrac {
-
     ArrayList<Roba> listaRobe;
-   SimpleDoubleProperty stanjeNovca;
+    SimpleDoubleProperty stanjeNovca;
 
     public Igrac(ArrayList<Roba> listaRobe, double stanjeNovca) {
         this.listaRobe = listaRobe;

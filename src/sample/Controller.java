@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.beans.binding.DoubleBinding;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
@@ -79,13 +80,13 @@ public class Controller implements Initializable {
         df = new DecimalFormat("#.00"); // Za labele
         roba = new ArrayList<>();
         igrac = new Igrac(10000);
-        roba.add(new Roba(0, "Zlato", 25, 100, 10, 400));
-        roba.add(new Roba(1, "Srebro", 35, 60, 6, 240));
-        roba.add(new Roba(2, "Nafta", 55, 130, 13, 420));
-        roba.add(new Roba(3, "Zeljezo", 150, 30, 3, 120));
-        roba.add(new Roba(4, "Dijamanti", 10, 300, 30, 1200));
-        roba.add(new Roba(5, "Politicki glasovi", 450, 10, 5, 25));
-        roba.add(new Roba(6, "Crnkinje", 1, 200, 20, 800));
+        roba.add(new Roba(0, "Zlato", 0, 100, 10, 400));
+        roba.add(new Roba(1, "Srebro", 0, 60, 6, 240));
+        roba.add(new Roba(2, "Nafta", 0, 130, 13, 420));
+        roba.add(new Roba(3, "Zeljezo", 0, 30, 3, 120));
+        roba.add(new Roba(4, "Dijamanti", 0, 300, 30, 1200));
+        roba.add(new Roba(5, "Politicki glasovi", 0, 10, 5, 25));
+        roba.add(new Roba(6, "Crnkinje", 0, 200, 20, 800));
 
         //Ubacivanje u Listu
         ObservableList<Roba> listaZaPromatranje = FXCollections.observableArrayList(roba);
@@ -95,8 +96,9 @@ public class Controller implements Initializable {
                 kolicinaLabela.textProperty().bind(novaVrijednost.kolicinaProperty().asString());
                 nazivRobeLabela.textProperty().bind(novaVrijednost.imeProperty());
                 trenutnaVrijednostLabela.textProperty().bind(novaVrijednost.trenutnaVrijednostJediniceProperty().asString().concat("KM"));
-                ukupnaVrijednostLabela.setText(df.format(novaVrijednost.getTrenutnaVrijednostJedinice() * novaVrijednost.getKolicina()) + "KM");
+                //ukupnaVrijednostLabela.setText(df.format(novaVrijednost.getTrenutnaVrijednostJedinice() * novaVrijednost.getKolicina()) + "KM");
                 prethodnaVrijednostLabela.setText(df.format(novaVrijednost.getHistorija().get(brojSedmice - 1)) + "KM");
+                ukupnaVrijednostLabela.textProperty().bind(DoubleBinding.doubleExpression(novaVrijednost.kolicinaProperty().multiply(novaVrijednost.trenutnaVrijednostJediniceProperty())).asString().concat("KM"));
 
                 // Postavka grafa
                 berzaGraf.getData().clear();
@@ -136,14 +138,22 @@ public class Controller implements Initializable {
 
     public void Prodaj(ActionEvent actionEvent) {
         Stage stage = new Stage();
-        Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource("prodaj.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("prodaj.fxml"));
+            ProdajController prodajController = new ProdajController(listaRobe.getSelectionModel().getSelectedItem().getKolicina());
+            loader.setController(prodajController);
+            Parent root = loader.load();
             stage.setTitle("SASE");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow());
             stage.show();
+            stage.setOnHiding(event -> {
+                listaRobe.getSelectionModel().getSelectedItem().setKolicina(listaRobe.getSelectionModel().getSelectedItem().getKolicina()-prodajController.getKolicina());
+                igrac.setStanjeNovca(igrac.getStanjeNovca()+listaRobe.getSelectionModel().getSelectedItem().getTrenutnaVrijednostJedinice()*prodajController.getKolicina());
+                netoLabela.setText(df.format(igrac.getUkupnaVrijednost()) + "KM");
+                stanjeTabela.refresh();
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -164,6 +174,8 @@ public class Controller implements Initializable {
             stage.setOnHiding(event -> {
                 listaRobe.getSelectionModel().getSelectedItem().setKolicina(listaRobe.getSelectionModel().getSelectedItem().getKolicina()+kupiController.getKolicina());
                 igrac.setStanjeNovca(igrac.getStanjeNovca()-listaRobe.getSelectionModel().getSelectedItem().getTrenutnaVrijednostJedinice()*kupiController.getKolicina());
+                netoLabela.setText(df.format(igrac.getUkupnaVrijednost()) + "KM");
+                stanjeTabela.refresh();
             });
         } catch (IOException e) {
             e.printStackTrace();

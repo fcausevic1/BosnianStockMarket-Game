@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane fx:controller="sample.ProdajController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" >
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" >
     <columnConstraints>
         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     </columnConstraints>
@@ -24,7 +24,7 @@
     <ButtonBar buttonOrder="U+FBIX_NCYOA_R" prefHeight="40.0" prefWidth="200.0" GridPane.rowIndex="2">
       <buttons>
           <Button fx:id="odustaniBtn" mnemonicParsing="false" text="Odustani" onAction="#odustani"/>
-          <Button fx:id="prodajBtn" mnemonicParsing="false" text="Prodaj" />
+          <Button fx:id="prodajBtn" mnemonicParsing="false" text="Prodaj" onAction="#prodaj"/>
       </buttons>
     </ButtonBar>
     <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" text="Koliko želite prodati? " textAlignment="CENTER" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER">

@@ -45,14 +45,14 @@ public class Controller implements Initializable {
     public TableColumn<Roba, String> ukupnaVrijednostKolona;
     public Label novacLabela;
     public Label netoLabela;
-    public javafx.scene.chart.BarChart BarChart;
+    public javafx.scene.chart.BarChart<Number, Number> BarChart;
     public PieChart pieChart;
     public Label Sedmica;
     public Label Nivo;
     public Label maxNetoVrijednost;
     public Label minNetoVrijednost;
     public Label najdrazaRoba;
-    public Label najvećiProfit;
+    public Label najveciProfit;
     private ArrayList<Roba> roba;
     private int brojSedmice;
     private DecimalFormat df;
@@ -70,7 +70,6 @@ public class Controller implements Initializable {
         listaRobe.getSelectionModel().clearSelection();
         listaRobe.getSelectionModel().select(t);
         stanjeTabela.refresh();
-        novacLabela.setText(df.format(igrac.getStanjeNovca()) + "KM");
         netoLabela.setText(df.format(igrac.getUkupnaVrijednost()) + "KM");
     }
 
@@ -93,9 +92,9 @@ public class Controller implements Initializable {
         listaRobe.setItems(listaZaPromatranje);
         listaRobe.getSelectionModel().selectedItemProperty().addListener((vrijednost, staraVrijednost, novaVrijednost) -> {
             if (novaVrijednost != null) {
-                nazivRobeLabela.setText(novaVrijednost.getIme());
-                trenutnaVrijednostLabela.setText(df.format(novaVrijednost.getTrenutnaVrijednostJedinice()) + "KM");
-                kolicinaLabela.setText(novaVrijednost.getKolicina() + "");
+                kolicinaLabela.textProperty().bind(novaVrijednost.kolicinaProperty().asString());
+                nazivRobeLabela.textProperty().bind(novaVrijednost.imeProperty());
+                trenutnaVrijednostLabela.textProperty().bind(novaVrijednost.trenutnaVrijednostJediniceProperty().asString().concat("KM"));
                 ukupnaVrijednostLabela.setText(df.format(novaVrijednost.getTrenutnaVrijednostJedinice() * novaVrijednost.getKolicina()) + "KM");
                 prethodnaVrijednostLabela.setText(df.format(novaVrijednost.getHistorija().get(brojSedmice - 1)) + "KM");
 
@@ -131,7 +130,7 @@ public class Controller implements Initializable {
         ukupnaVrijednostKolona.setCellValueFactory(data -> new SimpleStringProperty((df.format(data.getValue().getTrenutnaVrijednostJedinice()* data.getValue().getKolicina()) + "")));
 
         //Binding igraca
-       novacLabela.setText(igrac.getStanjeNovca() + "KM");
+       novacLabela.textProperty().bind(igrac.stanjeNovcaProperty().asString().concat("KM"));
        netoLabela.setText(igrac.getUkupnaVrijednost() + "KM");
     }
 
@@ -152,14 +151,20 @@ public class Controller implements Initializable {
 
     public void Kupi(ActionEvent actionEvent){
         Stage stage = new Stage();
-        Parent root;
         try {
-            root = FXMLLoader.load(getClass().getResource("kupi.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("kupi.fxml"));
+            KupiController kupiController = new KupiController((int)(igrac.getStanjeNovca() / listaRobe.getSelectionModel().getSelectedItem().getTrenutnaVrijednostJedinice()));
+            loader.setController(kupiController);
+            Parent root = loader.load();
             stage.setTitle("SASE");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.WINDOW_MODAL);
             stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow());
             stage.show();
+            stage.setOnHiding(event -> {
+                listaRobe.getSelectionModel().getSelectedItem().setKolicina(listaRobe.getSelectionModel().getSelectedItem().getKolicina()+kupiController.getKolicina());
+                igrac.setStanjeNovca(igrac.getStanjeNovca()-listaRobe.getSelectionModel().getSelectedItem().getTrenutnaVrijednostJedinice()*kupiController.getKolicina());
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }

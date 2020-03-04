@@ -163,7 +163,7 @@
             <Label text="Najdraža roba: " GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
             <Label fx:id="najdrazaRoba" text="Nafta" GridPane.columnIndex="3" GridPane.halignment="LEFT" />
             <Label text="Najveći profit po jedinici: " GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-            <Label fx:id="najvećiProfit" text="0.0000%" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
+            <Label fx:id="najveciProfit" text="0.0000%" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
          </children>
         </GridPane>
     </Tab>

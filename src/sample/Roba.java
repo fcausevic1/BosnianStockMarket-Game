@@ -5,7 +5,6 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Roba {
     int ID;
@@ -34,12 +33,12 @@ public class Roba {
         return kolicina.get();
     }
 
-    public SimpleIntegerProperty kolicinaProperty() {
-        return kolicina;
-    }
-
     public void setKolicina(int kolicina) {
         this.kolicina.set(kolicina);
+    }
+
+    public SimpleIntegerProperty kolicinaProperty() {
+        return kolicina;
     }
 
     public int getID() {
@@ -54,48 +53,48 @@ public class Roba {
         return ime.get();
     }
 
-    public SimpleStringProperty imeProperty() {
-        return ime;
-    }
-
     public void setIme(String ime) {
         this.ime.set(ime);
+    }
+
+    public SimpleStringProperty imeProperty() {
+        return ime;
     }
 
     public double getTrenutnaVrijednostJedinice() {
         return trenutnaVrijednostJedinice.get();
     }
 
-    public SimpleDoubleProperty trenutnaVrijednostJediniceProperty() {
-        return trenutnaVrijednostJedinice;
-    }
-
     public void setTrenutnaVrijednostJedinice(double trenutnaVrijednostJedinice) {
         this.trenutnaVrijednostJedinice.set(trenutnaVrijednostJedinice);
+    }
+
+    public SimpleDoubleProperty trenutnaVrijednostJediniceProperty() {
+        return trenutnaVrijednostJedinice;
     }
 
     public double getMinimalnaVrijednostJedinice() {
         return minimalnaVrijednostJedinice.get();
     }
 
-    public SimpleDoubleProperty minimalnaVrijednostJediniceProperty() {
-        return minimalnaVrijednostJedinice;
-    }
-
     public void setMinimalnaVrijednostJedinice(double minimalnaVrijednostJedinice) {
         this.minimalnaVrijednostJedinice.set(minimalnaVrijednostJedinice);
+    }
+
+    public SimpleDoubleProperty minimalnaVrijednostJediniceProperty() {
+        return minimalnaVrijednostJedinice;
     }
 
     public double getMaximalnaVrijednostJedinice() {
         return maximalnaVrijednostJedinice.get();
     }
 
-    public SimpleDoubleProperty maximalnaVrijednostJediniceProperty() {
-        return maximalnaVrijednostJedinice;
-    }
-
     public void setMaximalnaVrijednostJedinice(double maximalnaVrijednostJedinice) {
         this.maximalnaVrijednostJedinice.set(maximalnaVrijednostJedinice);
+    }
+
+    public SimpleDoubleProperty maximalnaVrijednostJediniceProperty() {
+        return maximalnaVrijednostJedinice;
     }
 
     public ArrayList<Double> getHistorija() {

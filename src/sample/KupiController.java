@@ -23,12 +23,13 @@ public class KupiController implements Initializable {
     @SuppressWarnings("unused")
     public void odustani() {
         max = 0;
-        ((Stage)kupiBtn.getScene().getWindow()).close();
+        ((Stage) kupiBtn.getScene().getWindow()).close();
     }
 
+    @SuppressWarnings("unused")
     public void kupi() {
         kolicina = spinnerKupi.getValue();
-        ((Stage)spinnerKupi.getScene().getWindow()).close();
+        ((Stage) spinnerKupi.getScene().getWindow()).close();
     }
 
     public int getKolicina() {
@@ -37,6 +38,6 @@ public class KupiController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        spinnerKupi.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, max, max/2, 1));
+        spinnerKupi.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, max, max / 2, 1));
     }
 }

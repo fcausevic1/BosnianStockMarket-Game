@@ -1,10 +1,7 @@
 package sample;
 
 import javafx.beans.binding.DoubleBinding;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,7 +10,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.*;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
@@ -129,11 +129,11 @@ public class Controller implements Initializable {
             double s = r.getHistorija().get(r.getHistorija().size() - 1);
             return new SimpleStringProperty((Math.round((t - s) / s * 100) * 100) / 100.0 + "%");
         });
-        ukupnaVrijednostKolona.setCellValueFactory(data -> new SimpleStringProperty((df.format(data.getValue().getTrenutnaVrijednostJedinice()* data.getValue().getKolicina()) + "")));
+        ukupnaVrijednostKolona.setCellValueFactory(data -> new SimpleStringProperty((df.format(data.getValue().getTrenutnaVrijednostJedinice() * data.getValue().getKolicina()) + "")));
 
         //Binding igraca
-       novacLabela.textProperty().bind(igrac.stanjeNovcaProperty().asString().concat("KM"));
-       netoLabela.setText(igrac.getUkupnaVrijednost() + "KM");
+        novacLabela.textProperty().bind(igrac.stanjeNovcaProperty().asString().concat("KM"));
+        netoLabela.setText(igrac.getUkupnaVrijednost() + "KM");
     }
 
     public void Prodaj(ActionEvent actionEvent) {
@@ -146,11 +146,11 @@ public class Controller implements Initializable {
             stage.setTitle("SASE");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.WINDOW_MODAL);
-            stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow());
+            stage.initOwner(((Node) actionEvent.getSource()).getScene().getWindow());
             stage.show();
             stage.setOnHiding(event -> {
-                listaRobe.getSelectionModel().getSelectedItem().setKolicina(listaRobe.getSelectionModel().getSelectedItem().getKolicina()-prodajController.getKolicina());
-                igrac.setStanjeNovca(igrac.getStanjeNovca()+listaRobe.getSelectionModel().getSelectedItem().getTrenutnaVrijednostJedinice()*prodajController.getKolicina());
+                listaRobe.getSelectionModel().getSelectedItem().setKolicina(listaRobe.getSelectionModel().getSelectedItem().getKolicina() - prodajController.getKolicina());
+                igrac.setStanjeNovca(igrac.getStanjeNovca() + listaRobe.getSelectionModel().getSelectedItem().getTrenutnaVrijednostJedinice() * prodajController.getKolicina());
                 netoLabela.setText(df.format(igrac.getUkupnaVrijednost()) + "KM");
                 stanjeTabela.refresh();
             });
@@ -159,21 +159,21 @@ public class Controller implements Initializable {
         }
     }
 
-    public void Kupi(ActionEvent actionEvent){
+    public void Kupi(ActionEvent actionEvent) {
         Stage stage = new Stage();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("kupi.fxml"));
-            KupiController kupiController = new KupiController((int)(igrac.getStanjeNovca() / listaRobe.getSelectionModel().getSelectedItem().getTrenutnaVrijednostJedinice()));
+            KupiController kupiController = new KupiController((int) (igrac.getStanjeNovca() / listaRobe.getSelectionModel().getSelectedItem().getTrenutnaVrijednostJedinice()));
             loader.setController(kupiController);
             Parent root = loader.load();
             stage.setTitle("SASE");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.WINDOW_MODAL);
-            stage.initOwner(((Node)actionEvent.getSource()).getScene().getWindow());
+            stage.initOwner(((Node) actionEvent.getSource()).getScene().getWindow());
             stage.show();
             stage.setOnHiding(event -> {
-                listaRobe.getSelectionModel().getSelectedItem().setKolicina(listaRobe.getSelectionModel().getSelectedItem().getKolicina()+kupiController.getKolicina());
-                igrac.setStanjeNovca(igrac.getStanjeNovca()-listaRobe.getSelectionModel().getSelectedItem().getTrenutnaVrijednostJedinice()*kupiController.getKolicina());
+                listaRobe.getSelectionModel().getSelectedItem().setKolicina(listaRobe.getSelectionModel().getSelectedItem().getKolicina() + kupiController.getKolicina());
+                igrac.setStanjeNovca(igrac.getStanjeNovca() - listaRobe.getSelectionModel().getSelectedItem().getTrenutnaVrijednostJedinice() * kupiController.getKolicina());
                 netoLabela.setText(df.format(igrac.getUkupnaVrijednost()) + "KM");
                 stanjeTabela.refresh();
             });

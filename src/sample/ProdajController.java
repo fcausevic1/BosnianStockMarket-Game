@@ -12,7 +12,6 @@ import java.util.ResourceBundle;
 public class ProdajController implements Initializable {
     public Button prodajBtn;
     public Spinner<Integer> spinnerProdaj;
-    public Button odustaniBtn;
 
     private int max;
     private int kolicina;
@@ -25,12 +24,13 @@ public class ProdajController implements Initializable {
     @SuppressWarnings("unused")
     public void odustani() {
         max = 0;
-        ((Stage)prodajBtn.getScene().getWindow()).close();
+        ((Stage) prodajBtn.getScene().getWindow()).close();
     }
 
+    @SuppressWarnings("unused")
     public void prodaj() {
         kolicina = spinnerProdaj.getValue();
-        ((Stage)spinnerProdaj.getScene().getWindow()).close();
+        ((Stage) spinnerProdaj.getScene().getWindow()).close();
     }
 
     public int getKolicina() {
@@ -39,6 +39,6 @@ public class ProdajController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        spinnerProdaj.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, max, max/2, 1));
+        spinnerProdaj.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, max, max / 2, 1));
     }
 }

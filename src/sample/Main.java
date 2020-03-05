@@ -5,11 +5,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.Scanner;
 
 public class Main extends Application {
+
+    public static void main(String[] args) {
+        launch(args);
+        System.exit(0);
+
+    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -17,13 +20,5 @@ public class Main extends Application {
         primaryStage.setTitle("The Sarajevo Stock Exchange");
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-    }
-
-
-    public static void main(String[] args) {
-    launch(args);
-
-    System.exit(0);
-
     }
 }

@@ -14,12 +14,12 @@ public class Igrac {
 
     public int kojiJeNivo() {                                   // Vraca nivo na kojem je igrac trenutno.
     int level=0;
-        for (int i=0 ; i<nivo.size(); i++) {
-            if (nivo.get(i))
-            level++;
+        for (Boolean bool : nivo) {
+            if (bool) level++;
         }
         return level;
     }
+
 
     public int daLiJePresaoNivo () {                                            // Vrati nivo ako si presao na njega.
         double ukupnaVrijednost = getUkupnaVrijednost();

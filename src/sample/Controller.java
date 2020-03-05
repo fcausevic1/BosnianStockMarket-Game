@@ -72,6 +72,9 @@ public class Controller implements Initializable {
         listaRobe.getSelectionModel().select(t);
         stanjeTabela.refresh();
         netoLabela.setText(df.format(igrac.getUkupnaVrijednost()) + "KM");
+        int hefta= Integer.parseInt(Sedmica.getText());
+        hefta++;
+        Sedmica.setText(hefta + "");
     }
 
     @Override
@@ -86,7 +89,7 @@ public class Controller implements Initializable {
         roba.add(new Roba(3, "Zeljezo", 0, 30, 3, 120));
         roba.add(new Roba(4, "Dijamanti", 0, 300, 30, 1200));
         roba.add(new Roba(5, "Politicki glasovi", 0, 10, 5, 25));
-        roba.add(new Roba(6, "Crnkinje", 0, 200, 20, 800));
+
 
         //Ubacivanje u Listu
         ObservableList<Roba> listaZaPromatranje = FXCollections.observableArrayList(roba);

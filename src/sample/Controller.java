@@ -148,7 +148,9 @@ public class Controller implements Initializable {
         for (Roba r : roba) {
             XYChart.Series<String, Number> s = new XYChart.Series<>();
             s.setName(r.getIme());
-            s.getData().add(new XYChart.Data<>(r.getIme(), Collections.max(r.getHistorija())));
+            s.getData().add(new XYChart.Data<>("Max", Collections.max(r.getHistorija())));
+            s.getData().add(new XYChart.Data<>("Min", Collections.min(r.getHistorija())));
+            s.getData().add(new XYChart.Data<>("Trenutna", r.getTrenutnaVrijednostJedinice()));
             barChart.getData().add(s);
         }
 

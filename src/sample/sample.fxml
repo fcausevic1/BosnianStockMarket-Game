@@ -129,7 +129,7 @@
                 <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
-            <BarChart fx:id="barChart" horizontalGridLinesVisible="false" horizontalZeroLineVisible="false" legendSide="RIGHT" legendVisible="false" title="Cijena robe" verticalGridLinesVisible="false" verticalZeroLineVisible="false" GridPane.columnIndex="3" GridPane.columnSpan="2147483647" GridPane.rowIndex="2">
+            <BarChart fx:id="barChart" horizontalGridLinesVisible="false" horizontalZeroLineVisible="false" title="Cijena robe" verticalGridLinesVisible="false" verticalZeroLineVisible="false" GridPane.columnIndex="3" GridPane.columnSpan="2147483647" GridPane.rowIndex="2">
                 <xAxis>
                     <CategoryAxis side="BOTTOM" />
                 </xAxis>

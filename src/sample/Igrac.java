@@ -79,7 +79,7 @@ public class Igrac {
         for (Roba r: listaRobe) {
             v += r.getKolicina() * r.getTrenutnaVrijednostJedinice();
         }
-        return  v;
+        return  v+getStanjeNovca();
     }
 /*
     void IspisiStanjeIgraca () {

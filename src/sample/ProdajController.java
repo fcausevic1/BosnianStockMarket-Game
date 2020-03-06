@@ -2,6 +2,7 @@ package sample;
 
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.stage.Stage;
@@ -12,6 +13,7 @@ import java.util.ResourceBundle;
 public class ProdajController implements Initializable {
     public Button prodajBtn;
     public Spinner<Integer> spinnerProdaj;
+    public Label robaZaProdaju;
 
     private int max;
     private int kolicina;
@@ -40,5 +42,6 @@ public class ProdajController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         spinnerProdaj.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, max, max / 2, 1));
+        robaZaProdaju.setText(String.valueOf(max));
     }
 }

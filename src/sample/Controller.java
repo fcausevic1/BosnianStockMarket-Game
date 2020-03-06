@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -46,7 +47,7 @@ public class Controller implements Initializable {
     public TableColumn<Roba, String> ukupnaVrijednostKolona;
     public Label novacLabela;
     public Label netoLabela;
-    public javafx.scene.chart.BarChart<Number, Number> BarChart;
+    public javafx.scene.chart.BarChart<String, Number> barChart;
     public PieChart pieChart;
     public Label Sedmica;
     public Label Nivo;
@@ -72,9 +73,10 @@ public class Controller implements Initializable {
         listaRobe.getSelectionModel().select(t);
         stanjeTabela.refresh();
         netoLabela.setText(df.format(igrac.getUkupnaVrijednost()) + "KM");
-        int hefta= Integer.parseInt(Sedmica.getText());
+        int hefta = Integer.parseInt(Sedmica.getText());
         hefta++;
         Sedmica.setText(hefta + "");
+        refreshGraphs();
     }
 
     @Override
@@ -137,6 +139,24 @@ public class Controller implements Initializable {
         //Binding igraca
         novacLabela.textProperty().bind(igrac.stanjeNovcaProperty().asString().concat("KM"));
         netoLabela.setText(igrac.getUkupnaVrijednost() + "KM");
+        refreshGraphs();
+    }
+
+    public void refreshGraphs() {
+        //Bar chart za max - tmp
+        barChart.getData().clear();
+        for (Roba r : roba) {
+            XYChart.Series<String, Number> s = new XYChart.Series<>();
+            s.setName(r.getIme());
+            s.getData().add(new XYChart.Data<>(r.getIme(), Collections.max(r.getHistorija())));
+            barChart.getData().add(s);
+        }
+
+        //Pie chart
+        pieChart.getData().clear();
+        for (Roba r : roba) {
+            if (r.getKolicina() != 0) pieChart.getData().add(new PieChart.Data(r.getIme(), r.getKolicina()));
+        }
     }
 
     public void Prodaj(ActionEvent actionEvent) {
@@ -156,6 +176,7 @@ public class Controller implements Initializable {
                 igrac.setStanjeNovca(igrac.getStanjeNovca() + listaRobe.getSelectionModel().getSelectedItem().getTrenutnaVrijednostJedinice() * prodajController.getKolicina());
                 netoLabela.setText(df.format(igrac.getUkupnaVrijednost()) + "KM");
                 stanjeTabela.refresh();
+                refreshGraphs();
             });
         } catch (IOException e) {
             e.printStackTrace();
@@ -179,6 +200,7 @@ public class Controller implements Initializable {
                 igrac.setStanjeNovca(igrac.getStanjeNovca() - listaRobe.getSelectionModel().getSelectedItem().getTrenutnaVrijednostJedinice() * kupiController.getKolicina());
                 netoLabela.setText(df.format(igrac.getUkupnaVrijednost()) + "KM");
                 stanjeTabela.refresh();
+                refreshGraphs();
             });
         } catch (IOException e) {
             e.printStackTrace();

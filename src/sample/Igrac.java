@@ -11,42 +11,52 @@ public class Igrac {
     private SimpleDoubleProperty stanjeNovca;
     private ArrayList<Boolean> nivo;               // 0-19999 1, 20k-39999 2, 40k-59999 3, 60k-99999 4, nesto na ovaj fazon
 
+    public void restartujNivoe () {
+        for (int i=0 ; i<nivo.size(); i++ ) {
+            nivo.set(i,false);
+        }
+    }
+
 
     public int kojiJeNivo() {                                   // Vraca nivo na kojem je igrac trenutno.
     int level=0;
         for (Boolean bool : nivo) {
-            if (bool) level++;
+            if (bool) ++level;
         }
         return level;
     }
 
 
-    public int daLiJePresaoNivo () {                                            // Vrati nivo ako si presao na njega.
+    public int daLiJePresaoNivo () {  // Vrati nivo ako si presao na njega.
+        System.out.println( getUkupnaVrijednost());
         double ukupnaVrijednost = getUkupnaVrijednost();
-        int level=0;
+        int level=1;
 
-        for (int i=0 ; i<nivo.size(); i++) {
-            if (ukupnaVrijednost>=60000 && nivo.get(3)) {
-                nivo.set(3,true);
+            if (ukupnaVrijednost>=60000    && !nivo.get(3) ) {
+          //      nivo.set(2,true);                                         //  Baca izuzetak kada pokusam ovo pozvat. moze bit da nije inicijalizovano
                 return 4;
             }
-            else if (ukupnaVrijednost>=40000 && nivo.get(2)) {
-                nivo.set(2,true);
+            else if (ukupnaVrijednost>=40000  && nivo.get(2) ) {
+        //        nivo.set(1,true);
                 return 3;
             }
-            else if (ukupnaVrijednost>=20000 && nivo.get(1)) {
-                nivo.set(1,true);
+
+             if (ukupnaVrijednost>=20000  /* && !nivo.get(1) */) {
+             //   nivo.set(0,true);
                 return 2;
             }
-        }
+
+
         return level;
     }
 
 
     public Igrac(double stanjeNovca) {
+
         this.stanjeNovca = new SimpleDoubleProperty(stanjeNovca);
         this.listaRobe = new ArrayList<>();
         this.nivo = new ArrayList<>();
+
       //  nivo.set(0,true);                               // Ovo ovdje ne radI! ne znam kako da postavim prvi na true?
 
     }
@@ -81,7 +91,16 @@ public class Igrac {
         }
         return  v+getStanjeNovca();
     }
-/*
+
+    public ArrayList<Boolean> getNivo() {
+        return nivo;
+    }
+
+    public void setNivo(ArrayList<Boolean> nivo) {
+        this.nivo = nivo;
+    }
+
+    /*
     void IspisiStanjeIgraca () {
         for (Artikal artikal : stanjeRobe) {
             System.out.println(artikal.roba.ime + " " + artikal.kolicina);

@@ -60,7 +60,29 @@ public class Controller implements Initializable {
     private DecimalFormat df;
     private Igrac igrac;
 
+
     public void novaSedmica() {
+        /*if (brojSedmice!=1) { igrac.restartujNivoe(); } */
+        int noviNivo=igrac.daLiJePresaoNivo();
+        System.out.println(noviNivo);
+                if (noviNivo!=0) {
+                    System.out.println("Prešli ste nivo!");
+                    System.out.println("Sada ste nivo " + noviNivo);
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("NoviNivo.fxml"));
+                    Parent root = null;
+                    try {
+                        root = loader.load();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    Stage stage = new Stage();
+                    stage.setTitle("Novi Nivo");
+                    stage.setScene(new Scene(root));
+                    stage.initModality(Modality.WINDOW_MODAL);
+                    stage.show();
+
+                }
+
         for (Roba r : roba) {
             r.historija.add(r.getTrenutnaVrijednostJedinice());
             r.setTrenutnaVrijednostJedinice(Math.round((Math.random() * 200) * 100) / 100.0); // Dvije decimale
@@ -77,6 +99,8 @@ public class Controller implements Initializable {
         hefta++;
         Sedmica.setText(hefta + "");
         refreshGraphs();
+
+
     }
 
     @Override

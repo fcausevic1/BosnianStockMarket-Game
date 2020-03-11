@@ -41,7 +41,7 @@ public class KupiController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        spinnerKupi.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, max, max / 2, 1));
+        spinnerKupi.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, max, 0, 1));
         novacZaKupovanjeRobe.setText(String.valueOf(max));
     }
 }

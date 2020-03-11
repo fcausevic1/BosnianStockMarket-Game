@@ -41,7 +41,7 @@ public class ProdajController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        spinnerProdaj.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, max, max / 2, 1));
+        spinnerProdaj.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, max, 0, 1));
         robaZaProdaju.setText(String.valueOf(max));
     }
 }

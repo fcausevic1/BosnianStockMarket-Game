@@ -62,13 +62,14 @@ public class Controller implements Initializable {
 
 
     public void novaSedmica() {
-        /*if (brojSedmice!=1) { igrac.restartujNivoe(); } */
+
         int noviNivo=igrac.daLiJePresaoNivo();
         System.out.println(noviNivo);
                 if (noviNivo!=0) {
                     System.out.println("Prešli ste nivo!");
                     System.out.println("Sada ste nivo " + noviNivo);
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("NoviNivo.fxml"));
+                    //loader.setController(Controller);
                     Parent root = null;
                     try {
                         root = loader.load();

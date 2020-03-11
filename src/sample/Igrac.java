@@ -19,7 +19,7 @@ public class Igrac {
 
 
     public int kojiJeNivo() {                                   // Vraca nivo na kojem je igrac trenutno.
-    int level=0;
+    int level=1;
         for (Boolean bool : nivo) {
             if (bool) ++level;
         }
@@ -28,21 +28,20 @@ public class Igrac {
 
 
     public int daLiJePresaoNivo () {  // Vrati nivo ako si presao na njega.
-        System.out.println( getUkupnaVrijednost());
         double ukupnaVrijednost = getUkupnaVrijednost();
-        int level=1;
+        int level=0;
 
             if (ukupnaVrijednost>=60000    && !nivo.get(3) ) {
-          //      nivo.set(2,true);                                         //  Baca izuzetak kada pokusam ovo pozvat. moze bit da nije inicijalizovano
+                nivo.add(3,true);                                         //  Baca izuzetak kada pokusam ovo pozvat. moze bit da nije inicijalizovano
                 return 4;
             }
             else if (ukupnaVrijednost>=40000  && nivo.get(2) ) {
-        //        nivo.set(1,true);
+                nivo.add(2,true);
                 return 3;
             }
 
-             if (ukupnaVrijednost>=20000  /* && !nivo.get(1) */) {
-             //   nivo.set(0,true);
+             else if (ukupnaVrijednost>=20000   && !nivo.get(1) ) {
+                nivo.add(1,true);
                 return 2;
             }
 
@@ -57,7 +56,10 @@ public class Igrac {
         this.listaRobe = new ArrayList<>();
         this.nivo = new ArrayList<>();
 
-      //  nivo.set(0,true);                               // Ovo ovdje ne radI! ne znam kako da postavim prvi na true?
+        nivo.add(0,true);
+        nivo.add(1,false);
+        nivo.add(2,false);
+        nivo.add(3,false);
 
     }
     public Igrac() {
@@ -98,6 +100,11 @@ public class Igrac {
 
     public void setNivo(ArrayList<Boolean> nivo) {
         this.nivo = nivo;
+    }
+
+    @Override
+    public String toString() {
+        return kojiJeNivo() + "";
     }
 
     /*
